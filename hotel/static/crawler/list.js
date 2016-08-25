@@ -11,6 +11,8 @@ var list = (function () {
 
     var currentFileName = "";
     var listFileName = "";
+    // var promiseSeed;
+    // var promiseList;
 
 	function _getFields() {
     	return {
@@ -57,6 +59,14 @@ var list = (function () {
         });
         
     }
+    function sleep(n) { 
+        var start = new Date().getTime(); 
+        while(true){
+            if(new Date().getTime()-start > n){
+                 break; 
+            }
+        }
+    }
 
     function _bindButtonDiv() {
     	$(hotelSeedButton).click(function(){
@@ -65,19 +75,37 @@ var list = (function () {
 	    	$.each(fields, function(name, values) {
 	    		args = args + $('#'+name).val() + "/";
 	        });
-	        _getHotelSeeds(args);
+            $('#processBar').removeClass("hidden"); 
+            // $('.progress-bar').width("10%")
+	        promiseSeed = _getHotelSeeds(args);
+            var promiseList;
+            var promiseR;
+            promiseSeed.then(function () {
+                $('.progress-bar').width("10%");
+                promiseList = _getHotelList(currentFileName);
+                promiseList.then(function () {
+                    $('.progress-bar').width("30%");
+                    promiseR = _getHotelResult(currentFileName);
+                    promiseR.then(function () {
+                        $('.progress-bar').width("100%")
+                    });
+                });
+            });
+            
+            
             // _getHotelList(currentFileName);
+            // $('.progress-bar').width("10%")
             // _getHotelResult(currentFileName);
-            $(hotelSeedButton).attr('disabled',"true")
+            // $(hotelSeedButton).attr('disabled',"true")
     	});
-        $(hotelListButton).click(function(){
-            _getHotelList(currentFileName);
-            $(hotelListButton).attr('disabled',"true");
-        });
-        $(hotelResultButton).click(function(){
-            _getHotelResult(currentFileName);
-            // $(hotelResultButton).attr('disabled',"true");
-        });
+        // $(hotelListButton).click(function(){
+        //     _getHotelList(currentFileName);
+        //     $(hotelListButton).attr('disabled',"true");
+        // });
+        // $(hotelResultButton).click(function(){
+        //     _getHotelResult(currentFileName);
+        //     // $(hotelResultButton).attr('disabled',"true");
+        // });
     }
 
     function _procressSeedsData(newdata) {
@@ -137,23 +165,26 @@ var list = (function () {
 
     function _getHotelSeeds(inputArgs) {
     	// console.log("/gethotellist/"+ inputArgs);
-        $.get("/hotel/getSeeds/"+ inputArgs, function(data, status){
+        promiseS = $.get("/hotel/getSeeds/"+ inputArgs, function(data, status){
             _procressSeedsData(data);
         });
+        return promiseS;
     }
     function _getHotelList(inputArgs) {
-        $.get("/hotel/getList/"+ inputArgs, function(data, status){
+        promiseL = $.get("/hotel/getList/"+ inputArgs, function(data, status){
              // alert(JSON.stringify(data));
             // alert(data['filename'])
             _procressListData(data);
         });
+        return promiseL;
     }
     function _getHotelResult(inputArgs) {
-        $.get("/hotel/getType/"+ inputArgs, function(data, status){
+        promiseR = $.get("/hotel/getType/"+ inputArgs, function(data, status){
              // alert(JSON.stringify(data));
             // alert(data['filename'])
             _procressResultData(data);
         });
+        return promiseR;
     }
 
     function setHotelSeedButtonDivName(divName) {
