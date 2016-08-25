@@ -112,13 +112,14 @@ class HotelSeeds:
                     data2 = [seed_url2]
                     fileutils.writeCsv(csvhandler, data2)
             elif self.env == 'fat8':
-                if (site == 'english') or (site == 'jp') or (site == 'fr') or (site == 'es') or (site == 'ru') or (site == 'de'):
-                    seed_url = 'http://' + site + '.' + test_enviroment + '.qa.nt.ctripcorp.com/hotels/' + city_name\
+                test_enviroment = self.env
+                if (site_name == 'english') or (site_name == 'jp') or (site_name == 'fr') or (site_name == 'es') or (site_name == 'ru') or (site_name == 'de'):
+                    seed_url = 'http://' + site_name + '.' + test_enviroment + '.qa.nt.ctripcorp.com/hotels/' + city_name\
                         + '-hotels-' + page + '-' + cities.get(city_name) + '/'
-                    seed_url1 = 'http://' + site + '.' + test_enviroment + '.qa.nt.ctripcorp.com/hotels/' + city_name\
+                    seed_url1 = 'http://' + site_name + '.' + test_enviroment + '.qa.nt.ctripcorp.com/hotels/' + city_name\
                         + '-hotels-' + page + '-' + \
                         cities.get(city_name) + '/' + '?pageno=2'
-                    seed_url2 = 'http://' + site + '.' + test_enviroment + '.qa.nt.ctripcorp.com/hotels/' + city_name\
+                    seed_url2 = 'http://' + site_name + '.' + test_enviroment + '.qa.nt.ctripcorp.com/hotels/' + city_name\
                         + '-hotels-' + page + '-' + \
                         cities.get(city_name) + '/' + '?pageno=3'
                     # print seed_url,seed_url1,seed_url2
@@ -128,16 +129,16 @@ class HotelSeeds:
                     fileutils.writeCsv(csvhandler, data1)
                     data2 = [seed_url2]
                     fileutils.writeCsv(csvhandler, data2)
-                elif (site == 'hk'):
-                    seed_url = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.com.' + site + '/hotels/' + city_name +\
+                elif (site_name == 'hk'):
+                    seed_url = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.com.' + site_name + '/hotels/' + city_name +\
                         '-hotels-' + page + '-' + \
                         cities.get(city_name) + '/' + \
                         '?curr=HKD&language=' + language
-                    seed_url1 = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.com.' + site + '/hotels/' + city_name +\
+                    seed_url1 = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.com.' + site_name + '/hotels/' + city_name +\
                         '-hotels-' + page + '-' + \
                         cities.get(city_name) + '/' + \
                         '?curr=HKD&language=' + language + '&pageno=2'
-                    seed_url2 = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.com.' + site + '/hotels/' + city_name +\
+                    seed_url2 = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.com.' + site_name + '/hotels/' + city_name +\
                         '-hotels-' + page + '-' + \
                         cities.get(city_name) + '/' + \
                         '?curr=HKD&language=' + language + '&pageno=3'
@@ -148,13 +149,13 @@ class HotelSeeds:
                     fileutils.writeCsv(csvhandler, data1)
                     data2 = [seed_url2]
                     fileutils.writeCsv(csvhandler, data2)
-                elif (site == 'sg') or (site == 'my'):
-                    seed_url = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.' + site + '/hotels/' + city_name +\
+                elif (site_name == 'sg') or (site_name == 'my'):
+                    seed_url = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.' + site_name + '/hotels/' + city_name +\
                         '-hotels-' + page + '-' + cities.get(city_name) + '/'
-                    seed_url1 = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.' + site + '/hotels/' + city_name +\
+                    seed_url1 = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.' + site_name + '/hotels/' + city_name +\
                         '-hotels-' + page + '-' + \
                         cities.get(city_name) + '/' + '?pageno=2'
-                    seed_url2 = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.' + site + '/hotels/' + city_name +\
+                    seed_url2 = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.' + site_name + '/hotels/' + city_name +\
                         '-hotels-' + page + '-' + \
                         cities.get(city_name) + '/' + '?pageno=3'
                     # print seed_url,seed_url1,seed_url2
@@ -165,12 +166,12 @@ class HotelSeeds:
                     data2 = [seed_url2]
                     fileutils.writeCsv(csvhandler, data2)
                 else:
-                    seed_url = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.co.' + site + '/hotels/' + city_name +\
+                    seed_url = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.co.' + site_name + '/hotels/' + city_name +\
                         '-hotels-' + page + '-' + cities.get(city_name) + '/'
-                    seed_url1 = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.co.' + site + '/hotels/' + city_name +\
+                    seed_url1 = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.co.' + site_name + '/hotels/' + city_name +\
                         '-hotels-' + page + '-' + \
                         cities.get(city_name) + '/' + '?pageno=2'
-                    seed_url2 = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.co.' + site + '/hotels/' + city_name +\
+                    seed_url2 = 'http://www.' + test_enviroment + '.qa.nt.ctripcorp.co.' + site_name + '/hotels/' + city_name +\
                         '-hotels-' + page + '-' + \
                         cities.get(city_name) + '/' + '?pageno=3'
                     # print seed_url,seed_url1,seed_url2
